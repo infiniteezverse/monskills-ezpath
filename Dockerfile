@@ -34,5 +34,8 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3000/v1/health', (r) => {if (r.statusCode !== 200) throw new Error(r.statusCode)})"
 
+# Compile api-server separately (not in npm package)
+RUN npx tsc api-server.ts --strict --esModuleInterop --skipLibCheck
+
 # Start API server
-CMD ["node", "dist/api-server.js"]
+CMD ["node", "api-server.js"]
