@@ -2,10 +2,39 @@
 
 [![npm version](https://img.shields.io/npm/v/@infiniteezverse/monskills-ezpath.svg)](https://www.npmjs.com/package/@infiniteezverse/monskills-ezpath)
 [![GitHub](https://img.shields.io/badge/github-infiniteezverse%2Fmonskills--ezpath-blue)](https://github.com/infiniteezverse/monskills-ezpath)
+[![License](https://img.shields.io/badge/license-MIT-green)](#license)
 
-A MONSKILLS skill exposing **EZ-Path** DEX routing to AI agents building on Monad, Base, and other EVM chains.
+**MONSKILLS skill for AI agents** to access EZ-Path's 10-venue DEX routing on Monad & Base.
 
-**Agentic Monad Price Racing Orchestration of Diverse Aggregators** — Races 10 DEX venues simultaneously and returns the best price.
+Race 10 venues simultaneously, get the best price, execute with X402 micro-payments. **No API key.** Built for agentic ecosystems.
+
+---
+
+## 🚀 Quickstart (60 seconds)
+
+**Install:**
+```bash
+npm install @infiniteezverse/monskills-ezpath
+```
+
+**Use:**
+```typescript
+import { getPrice } from '@infiniteezverse/monskills-ezpath';
+
+const price = await getPrice(
+  'base',
+  '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913', // USDC
+  '0x4200000000000000000000000000000000000006', // WETH
+  '1000000' // 1 USDC
+);
+
+console.log(`Best price: ${price.price}`);
+console.log(`From venues: ${price.sources.join(', ')}`);
+```
+
+**That's it.** One function call, 10 venues raced, best price returned.
+
+---
 
 ## What is EZ-Path?
 
@@ -47,13 +76,15 @@ if ('price' in result) {
 - `getQuote(request)` — Full quote with venue details
 - `batchQuotes(requests)` — Multiple quotes in parallel
 
-## Chains
+## Works On
 
-| Chain | Status |
-|-------|--------|
-| Base | ✅ Live |
-| Monad | ✅ Live |
-| Arbitrum, Optimism, Polygon | 🚧 Soon |
+| Blockchain | Node Type | Status | Notes |
+|-----------|-----------|--------|-------|
+| **Base** | Mainnet | ✅ Live | 2s blocks, full 10-venue routing |
+| **Monad** | Testnet | ✅ Live | 0.7s blocks, optimized for speed |
+| Arbitrum | Mainnet | 🚧 Soon | Q3 2026 |
+| Optimism | Mainnet | 🚧 Soon | Q3 2026 |
+| Polygon | Mainnet | 🚧 Soon | Q4 2026 |
 
 ## Pricing
 
